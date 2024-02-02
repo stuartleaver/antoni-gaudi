@@ -1,0 +1,31 @@
+name: Deploy Azure resources
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - bicep/**
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy Job
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_BICEP }}
+      
+      - name: Bicep deploy
+        uses: azure/arm-deploy@v1
+        with:
+          scope: subscription
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+          region: ${{ secrets.AZURE_REGION }}
+          template: ./bicep/main.bicep
+          parameters: 
+            location=${{ secrets.AZURE_REGION }}
+            containerRegistryResourceGroupName=${{ secrets.CONTAINER_REGISTRY_RESOURCE_GROUP_NAME }}
+            containerRegistryName=${{ secrets.CONTAINER_REGISTRY_NAME }}
+            containerRegistryImageName=${{ secrets.CONTAINER_REGISTRY_IMAGE_NAME }}
