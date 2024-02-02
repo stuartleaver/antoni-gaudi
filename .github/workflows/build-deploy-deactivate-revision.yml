@@ -40,7 +40,7 @@ jobs:
           service_principal: ${{ secrets.SERVICE_PRINCIPLE }}
           service_principal_password: ${{ secrets.SERVICE_PRINCIPLE_PASSWORD }}
           tenant: ${{ secrets.TENANT }}
-          registry: ${{ secrets.CONTAINER_REGISTRY }}
+          registry: ${{ secrets.CONTAINER_REGISTRY_NAME }}
           repository: ${{ secrets.REPOSITORY_NAME }}
           image: antonigaudi
           branch: ${{ steps.extract_branch_name.outputs.BRANCH }}
