@@ -1,0 +1,29 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'bicep/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch_name
+
+      - name: ACR build
+        id: acr
+        uses: azure/acr-build@v1
+        with:
+          service_principal: ${{ secrets.SERVICE_PRINCIPLE }}
+          service_principal_password: ${{ secrets.SERVICE_PRINCIPLE_PASSWORD }}
+          tenant: ${{ secrets.TENANT }}
+          registry: ${{ secrets.CONTAINER_REGISTRY }}
+          repository: ${{ secrets.REPOSITORY_NAME }}
+          image: antonigaudi
+          branch: ${{ steps.extract_branch_name.outputs.BRANCH }}
+          tag: latest
