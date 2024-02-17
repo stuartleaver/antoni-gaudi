@@ -32,7 +32,7 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      
+
       - name: ACR build
         id: acr
         uses: azure/acr-build@v1
@@ -112,8 +112,7 @@ jobs:
             Revision ${{ env.CONTAINERAPP_NAME }}--${{ env.SHORT_HASH }} is deactivated.
 
       - name: Delete ACR Image
-        uses: azure/CLI@v2
+        uses: azure/CLI@v1
         with:
           inlineScript: |
             az acr repository delete --name ${{ secrets.CONTAINER_REGISTRY_NAME }} --image ${{ secrets.REPOSITORY_NAME }}/antonigaudi:${{ env.SHORT_HASH }} --yes
-        
