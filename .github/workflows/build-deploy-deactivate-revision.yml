@@ -44,7 +44,7 @@ jobs:
           repository: ${{ secrets.REPOSITORY_NAME }}
           image: antonigaudi
           branch: ${{ steps.extract_branch_name.outputs.BRANCH }}
-          tag: ${{ github.event.pull_request.head.sha }}
+          tag: ${{ env.SHORT_HASH }}
 
       - name: Add revision to ACA
         uses: Azure/aca-review-apps@v0.2.0
@@ -53,7 +53,7 @@ jobs:
           resource-group: ${{ secrets.RESOURCE_GROUP_NAME }}
           name: ${{ secrets.CONTAINER_APP_NAME }}
           revision-name-suffix: ${{ env.SHORT_HASH }}
-          image: ${{ secrets.CONTAINER_REGISTRY_SERVER }}/${{ secrets.REPOSITORY_NAME }}/antonigaudi:${{ github.event.pull_request.head.sha }}
+          image: ${{ secrets.CONTAINER_REGISTRY_SERVER }}/${{ secrets.REPOSITORY_NAME }}/antonigaudi:${{ env.SHORT_HASH }}
 
       - name: Add new comment to PR
         uses: peter-evans/create-or-update-comment@v2
@@ -110,3 +110,10 @@ jobs:
           edit-mode: replace
           body: |
             Revision ${{ env.CONTAINERAPP_NAME }}--${{ env.SHORT_HASH }} is deactivated.
+
+      - name: Delete ACR Image
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            az acr repository delete --name ${{ secrets.CONTAINER_REGISTRY_NAME }} --image ${{ secrets.REPOSITORY_NAME }}/antonigaudi:${{ env.SHORT_HASH }} --yes
+        
