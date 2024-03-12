@@ -1,0 +1,138 @@
+.architecture ul li .list_inner {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.07);
+}
+
+.architecture ul li .details {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.architecture ul li .list_inner .image:hover .main {
+  transform: scale(1.1) translateZ(0);
+}
+
+.transition_all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration_300 {
+  transition-duration: 300ms;
+}
+
+.read_more {
+  position: relative;
+  float: left;
+  clear: both;
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+.read_more a {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  padding-right: 32px;
+  font-family: Montserrat, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.read_more a:before {
+  position: absolute;
+  content: "";
+  background-color: #000;
+  margin: auto;
+  width: 100%;
+  height: 1px;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  transform: scaleX(0.2);
+  transform-origin: left center;
+  animation: read-more-anim;
+  animation-fill-mode: forwards;
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.6, 0.01, 0, 1);
+}
+.read_more a span {
+  display: inline-block;
+  position: relative;
+  background-color: #fff;
+  z-index: 1;
+  transition: 0.6s cubic-bezier(0.6, 0.01, 0, 1);
+  transform: translateX(-110%);
+}
+
+.architecture ul li .list_inner:hover .read_more a span {
+  transform: translateX(0%);
+}
+
+.architecture ul li .list_inner:hover .read_more a:before {
+  animation: read-more-anim-2;
+  animation-fill-mode: forwards;
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.6, 0.01, 0, 1);
+}
+
+@keyframes read-more-anim {
+  0% {
+    transform-origin: right center;
+    transform: scaleX(0.2);
+  }
+  70% {
+    transform-origin: right center;
+  }
+  71% {
+    transform-origin: left center;
+    transform: scaleX(1);
+  }
+
+  100% {
+    transform-origin: left center;
+    transform: scaleX(0.2);
+  }
+}
+
+@keyframes read-more-anim-2 {
+  0% {
+    transform-origin: left center;
+    transform: scaleX(0.2);
+  }
+  70% {
+    transform-origin: left center;
+    transform: scaleX(1);
+  }
+  71% {
+    transform-origin: right center;
+  }
+  100% {
+    transform-origin: right center;
+    transform: scaleX(0.2);
+  }
+}
+
+@media (max-width: 1600px) {
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 1040px) {
+}
+
+@media (max-width: 768px) {
+  .architecture ul {
+    margin: 0px;
+  }
+
+  .architecture ul li {
+    width: 100%;
+    padding-left: 0;
+  }
+}
