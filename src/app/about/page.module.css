@@ -1,0 +1,26 @@
+@media (max-width: 1600px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 1040px) {
+}
+
+@media (max-width: 768px) {
+  .about .short_info {
+    flex-direction: column;
+  }
+
+  .short_info .left {
+    width: 100%;
+    padding-right: 0px;
+  }
+
+  .short_info .right {
+    width: 100%;
+    padding-left: 0px;
+  }
+}

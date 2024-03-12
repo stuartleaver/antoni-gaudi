@@ -18,6 +18,130 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  line-height: 30px;
+  font-size: 15px;
+}
+
+.container {
+  position: relative;
+  clear: both;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  width: 100%;
+  max-width: 1070px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.opened {
+  right: 0px;
+}
+
+.full_link {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 4;
+}
+
+/*---------------------------------------------------*/
+/*	 NAVIGATION
+/*---------------------------------------------------*/
+
+.nav ul li.active > a {
+  color: #000 !important;
+}
+
+@media (max-width: 1200px) {
+  .topbar {
+    display: block !important;
+  }
+
+  .leftpart {
+    display: none;
+  }
+}
+
+/*---------------------------------------------------*/
+/*	 MAIN CONTENT
+/*---------------------------------------------------*/
+
+@media (max-width: 1200px) {
+  .rightpart {
+    padding-left: 0px;
+  }
+}
+
+/*---------------------------------------------------*/
+/*	 SCREEN SIZES
+/*---------------------------------------------------*/
+
+@media (max-width: 1600px) {
+  .leftpart {
+    width: 350px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  .rightpart {
+    padding-left: 350px;
+  }
+
+  .container {
+    max-width: 968px;
+  }
+
+  .home .gaudi {
+    min-height: 250px;
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .rightpart {
+    padding-left: 0px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .home .gaudi {
+    min-height: 250px;
+    min-width: 250px;
+  }
+
+  .home .gaudi {
+    margin-bottom: 30px;
+  }
+
+  .home .home_content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .home .details {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home .gaudi {
+    min-height: 200px;
+    min-width: 200px;
+  }
 }
 
 .image-morph {
